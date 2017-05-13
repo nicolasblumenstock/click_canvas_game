@@ -1,0 +1,8 @@
+#canvas {
+	border: 10px solid black;
+	border-radius: 5px;
+}
+
+.balls {
+	margin-bottom: 10px;
+}
