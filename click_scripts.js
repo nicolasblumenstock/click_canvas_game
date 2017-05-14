@@ -108,23 +108,20 @@ function Erase() {
 
 function collidingBalls(ball,array){
 	for (j = 0; j < array.length; j++){
-		var curXPos = (ball.x + ball.r);
-		var curXNeg = (ball.x - ball.r);
-		var curYPos = (ball.y + ball.r);
-		var curYNeg = (ball.y - ball.r);
-		var newXPos = (array[j].x + array[j].r);
-		var newXNeg = (array[j].x - array[j].r);
-		var newYPos = (array[j].y + array[j].r);
-		var newYNeg = (array[j].y - array[j].r);	
-
-		if ((curXPos <= newXNeg) || (curXNeg >= newXPos) || (curYPos <= newYNeg) || (curYNeg >= newYPos)){
-			ball.xSpeed = -ball.xSpeed * (ball.xDirection);
-			ball.ySpeed = -ball.ySpeed * (ball.yDirection);
-			array[j].xSpeed = -array[j].xSpeed * (array[j].xDirection);
-			array[j].ySpeed = -array[j].ySpeed * (array[j].yDirection);
+		var distanceX = Math.abs(ball.x - array[j].x);
+		var distanceY = Math.abs(ball.y - array[j].y);
+		var distanceR = (2 * r)
+		var points = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY))
+		if (ball == array[j]){
+			return
+		}else if (points <= distanceR){
+			ball.xSpeed = ball.xSpeed * -ball.xDirection;
+			ball.ySpeed = ball.ySpeed * -ball.yDirection;
+			array[j].xSpeed = array[j].xSpeed * -array[j].xDirection;
+			array[j].ySpeed = array[j].ySpeed * -array[j].yDirection;			
+		}
 		}
 	}
-}
 
 function drawBall(array){
 	context.beginPath();
